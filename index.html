@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Background</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="video-container">
+        <video autoplay loop muted>
+            <source src="main-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <audio id="select-audio" src="select.mp3" preload="auto"></audio>
+
+    <div class="content">
+
+
+        <div class="title-option">
+            <h1 class="title-option-disabled">ITEM</h1>
+        </div>
+        <div class="title-option">
+            <h1 class="title-option-disabled">PERSONA</h1>
+        </div>
+        <div class="title-option">
+            <h1 class="title-option-disabled">STATS</h1>
+        </div>
+        <div class="title-option">
+            <h1 class="title-option-disabled">QUEST</h1>
+        </div>
+        <div class="title-option" id="enter-link">
+            <h1 class="title-option-back"><a href="#" >MEMORIES OF YOU</a></h1>
+            <h1 class="title-option-front"><a href="#">MEMORIES OF YOU</a></h1>
+        </div>
+        <div class="title-option">
+            <h1 class="title-option-back"><a href="./Calendar.html">CALENDAR</a></h1>
+            <h1 class="title-option-front"><a href="./Calendar.html">CALENDAR</a></h1>
+        </div>
+        <div class="title-option">
+            <h1 class="title-option-disabled">SOCIAL LINK</h1>
+        </div>
+        <audio autoplay src="MenuMusic.mp3"></audio>
+
+
+
+    </div>
+
+</body>
+<script>
+    const audio = document.getElementById('select-audio');
+    const enterLink = document.getElementById('enter-link');
+    enterLink.addEventListener('click', function (event) {
+        if (audio.readyState >= 3) {
+            audio.play().then(() => {
+                audio.onended = function () {
+                    window.location.href = './Together.html';
+                };
+            }).catch(error => {
+                console.error('Audio playback failed:', error);
+                window.location.href = './Together.html';
+            });
+        } else {
+            console.error('Audio is not ready to play');
+        }
+    });
+</script>
+
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown to January 16th, 2025</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            color: white;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px 50px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .countdown-calendar {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 20px 0;
+            display: inline;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .countdown-calendar div {
+            margin: 0 15px;
+            border-radius: 10px;
+            padding: 20px 40px;
+        }
+
+        .countdown-calendar div span {
+            display: block;
+            font-size: 1.2em;
+        }
+
+        .countdown-calendar div p {
+            font-size: 1.5em;
+            margin: 0;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 1.2em;
+            opacity: 0.7;
+        }
+
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="backgroundMusic" src="MusicCalendar.mp3" loop autoplay></audio>
+    <div class="video-container"></div>
+    <video autoplay loop muted>
+        <source src="Calendar.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+
+
+    <div class="countdown-calendar" id="countdown">
+        <div>
+            <div>
+                <p id="days"></p>
+                <span>Days</span>
+            </div>
+            <div>
+                <p id="hours"></p>
+                <span>Hours</span>
+            </div>
+            <div>
+                <p id="minutes"></p>
+                <span>Minutes</span>
+            </div>
+        </div>
+        <div>
+            <p>You're worth the world.</p>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        function updateCountdown() {
+            const targetDate = new Date('2025-01-16T00:00:00'); // Target date (June 15th, 2025)
+            const currentDate = new Date();
+
+            const timeDifference = targetDate - currentDate;
+
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+
+        setInterval(updateCountdown, 1000); // Update every second
+        updateCountdown(); // Initial call to display countdown immediately
+    </script>
+
+</body>
+
+</html>

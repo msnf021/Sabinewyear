@@ -1,0 +1,346 @@
+* {
+  -webkit-font-smoothing: antialiased; /* For Safari and Chrome */
+  -moz-osx-font-smoothing: grayscale; /* For Firefox */
+}
+@font-face {
+  font-family: "FOT-Skip Std";
+  src: url("FOT-Skip\ Std\ B.otf") format("opentype");
+}
+@font-face {
+  font-family: "FOT-Rodin Pro";
+  src: url("FOT-Rodin\ Pro\ B.otf") format("opentype");
+}
+@font-face {
+  font-family: "NudMotoyaExCedar W6";
+  src: url("https://db.onlinewebfonts.com/t/d03fdeed9cc2e75a1f2ccb658f1e836a.eot");
+  src: url("https://db.onlinewebfonts.com/t/d03fdeed9cc2e75a1f2ccb658f1e836a.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/d03fdeed9cc2e75a1f2ccb658f1e836a.woff2")
+      format("woff2"),
+    url("https://db.onlinewebfonts.com/t/d03fdeed9cc2e75a1f2ccb658f1e836a.woff")
+      format("woff"),
+    url("https://db.onlinewebfonts.com/t/d03fdeed9cc2e75a1f2ccb658f1e836a.ttf")
+      format("truetype"),
+    url("https://db.onlinewebfonts.com/t/d03fdeed9cc2e75a1f2ccb658f1e836a.svg#NudMotoyaExCedar W6")
+      format("svg");
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50; /* Above other content */
+}
+
+.hidden {
+  display: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100vh;
+  font-family: "FOT-Skip Std";
+}
+
+.half {
+  flex: 1;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+.left-half {
+  background-image: url("https://example.com/left-image.jpg");
+  z-index: -1;
+}
+
+.right-half {
+  background-image: url("https://example.com/right-image.jpg");
+  z-index: -1;
+}
+.clock {
+  position: absolute;
+  padding: 10px 20px;
+  color: white;
+  font-size: 18px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 41, 97, 1) 54%,
+    rgba(0, 0, 0, 1) 98%
+  );
+  z-index: 1; /* Place it behind the clock */
+  box-shadow: 10px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+#mexicoClock {
+  top: 20px;
+  right: 20px;
+}
+
+#londonClock {
+  bottom: 20px;
+  left: 20px;
+}
+.question-mark {
+  font-size: 20px;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.countdown-box {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 300px;
+  width: 600px;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 7, 70, 1) 54%,
+    rgba(0, 0, 60, 1) 98%
+  );
+  z-index: 10; /* Ensures it appears above the background */
+  overflow: hidden;
+  box-shadow: 10px 5px 0px rgba(0, 0, 0, 0.5);
+}
+.text-notification {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  color: white;
+  display: inline;
+}
+.text-blue {
+  color: #41ffff;
+  display: inline;
+}
+.countdown-box::before {
+  content: "";
+  position: absolute;
+  top: -100px;
+  left: -50px;
+  width: 800px;
+  height: 80px;
+  background-color: #0015e8;
+  z-index: 20;
+  rotate: -15deg;
+}
+
+.countdown-box::after {
+  content: "";
+  position: absolute;
+  bottom: -100px;
+  right: -50px;
+  width: 800px;
+  height: 100px;
+  background-color: #0015e8;
+  z-index: 20;
+  rotate: -15deg;
+}
+
+/* Countdown text styling */
+.countdown {
+  color: #0015e8;
+  font-style: italic;
+  font-family: "NudMotoyaExCedar W6";
+  text-align: left;
+  font-size: 100px;
+  padding: 10px;
+  top: 5px;
+  transform: rotate(-15deg); /* Apply rotation to the text */
+  position: absolute;
+  z-index: 30; /* Ensures text stays on top of pseudo-elements */
+}
+.countdown-calendar {
+    color: black;
+    font-style: italic;
+    font-family: "NudMotoyaExCedar W6";
+    text-align: left;
+    font-size: 40px;
+    padding: 10px;
+    top: 200px;
+    position: absolute;
+    z-index: 30; /* Ensures text stays on top of pseudo-elements */
+  }
+
+.lyrics-left {
+  color: black;
+  display: flex;
+  position: absolute;
+  top: 30%;
+  left: 8%;
+  text-align: center;
+  font-size: 40px;
+}
+.lyrics-right {
+  color: white;
+  display: flex;
+  position: absolute;
+  top: 70%;
+  left: 58%;
+  text-align: center;
+  font-size: 40px;
+}
+
+.music-player {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.toggle-time {
+  position: absolute;
+  bottom: 60px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.video-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.video-container video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+}
+
+.content {
+  position: relative;
+  color: white;
+  text-align: center;
+  top: 60%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  font-family: "FOT-Rodin Pro";
+}
+.title-option {
+  position: relative;
+  width: 800px;
+  height: 80px;
+  margin-bottom: 10px;
+  font-size: 30px; /* Increase font size */
+  font-weight: bold; /* Makes the text bolder */
+  letter-spacing: -3px;
+}
+.title-option-disabled {
+  position: absolute;
+  color: rgb(83, 82, 82);
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+}
+.title-option:hover .title-option-front {
+  color: rgba(0, 0, 0, 1);
+  clip-path: polygon(0 60%, 95% 0, 90% 70%);
+  background-color: white;
+}
+.title-option:hover .title-option-back {
+  display: block;
+}
+.title-option-back {
+  position: absolute;
+  display: none;
+  color: rgba(255, 0, 0, 1);
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+}
+.title-option-front {
+  position: absolute;
+  color: rgb(87, 207, 255);
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+}
+.title-option-front,
+.title-option-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  font-family: "FOT-Rodin Pro", sans-serif;
+  transition: color 0.3s, transform 0.3s ease-in-out;
+}
+/* .title-option-front:hover {
+  color: rgba(0, 0, 0, 1);
+  clip-path: polygon(0 60%, 95% 0, 90% 70%);
+  background-color: white;
+} */
+
+.title-option:nth-child(1) {
+  right: 0;
+}
+.title-option:nth-child(2) {
+  right: 10px;
+}
+.title-option:nth-child(3) {
+  right: 20px;
+}
+.title-option:nth-child(4) {
+  right: 30px; /* Shifts the fourth container 60px to the right */
+}
+.title-option:nth-child(5) {
+  right: 40px; /* Shifts the fourth container 60px to the right */
+}
+.title-option:nth-child(6) {
+  right: 50px; /* Shifts the fourth container 60px to the right */
+}
+.title-option:nth-child(7) {
+  right: 60px; /* Shifts the fourth container 60px to the right */
+}
+.title-option:nth-child(8) {
+  right: 70px; /* Shifts the fourth container 60px to the right */
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}

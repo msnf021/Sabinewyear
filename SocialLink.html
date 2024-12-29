@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lovers Tarot</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://db.onlinewebfonts.com/c/d03fdeed9cc2e75a1f2ccb658f1e836a?family=NudMotoyaExCedar+W6" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100vh;
+            background-color: black; /* Initial background color */
+            color: #f4f4f4;
+            font-family: 'NudMotoyaExCedar W6', sans-serif;
+            transition: background-color 0.6s ease-in-out; /* Smooth transition for background color */
+        }
+
+        .content-left, .content-right {
+            width: 30%;
+            padding: 20px;
+        }
+
+        .content-left {
+            display: flex;
+            color: black;
+            flex-direction: column;
+            justify-content: center;
+            visibility: hidden; /* Hide images initially */
+        }
+
+        .card-container {
+            perspective: 1000px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 300px;
+            height: 400px;
+        }
+
+        .card {
+            width: 300px;
+            height: 400px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateY(0);
+            transition: transform 0.6s; /* Transition for the card flip */
+            cursor: pointer;
+        }
+
+        .card.is-flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .card-front {
+            background-image: url('CardBack.png');
+            background-size: cover;
+        }
+
+        .card-back {
+            background-image: url('LoversCard.png');
+            background-size: cover;
+            transform: rotateY(180deg);
+        }
+
+        .content-right {
+            text-align: left;
+            color: black;
+        }
+
+        .content-right h1 {
+            margin-bottom: 10px;
+            color: black;
+        }
+
+        /* Hide images initially */
+        .content-right img, .content-left img {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-left">
+        <h2>The Lovers Arcana</h2>
+        <p>
+            Bound by fate, entwined in passion. Two souls stand at the edge of eternity, 
+            their choices shaping the paths of both heart and spirit. The Lovers Arcana is 
+            not merely about love, but the harmony—or chaos—that emerges when two wills 
+            intertwine. 
+        </p>
+        <p>
+            The card speaks of union, trust, and the trials that test their bond. For in the 
+            shadow of love lies its mirror—sacrifice, loss, and longing.
+        </p>
+        <img src="LoversLuis.png" alt="">
+    </div>
+
+    <div class="card-container">
+        <div class="card" id="card">
+            <div class="card-face card-front"></div>
+            <div class="card-face card-back"></div>
+        </div>
+    </div>
+
+    <div class="content-right">
+        <h1>Luis Garcia</h1>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula felis 
+            nec lacus tempor, et malesuada ex viverra. Maecenas vel risus et lorem bibendum 
+            tincidunt. Fusce nec elit eget lorem fringilla dapibus. Donec pharetra nunc ut 
+            dolor lacinia, vitae sodales orci ornare.
+        </p>
+        <img src="LuisLovers.jpg" alt="">
+    </div>
+
+    <script>
+        // Flip card functionality
+        const card = document.getElementById('card');
+        const body = document.body;
+        const contentLeft = document.querySelector('.content-left');
+        const contentRight = document.querySelector('.content-right');
+        
+        card.addEventListener('click', () => {
+            card.classList.toggle('is-flipped');
+            
+            // Change the background color when the card is flipped
+            if (card.classList.contains('is-flipped')) {
+                body.style.backgroundColor = 'white';  // Change to white when flipped
+                contentLeft.style.visibility = 'visible'; // Show the images after flip
+                contentRight.style.visibility = 'visible'; // Show the images after flip
+            } else {
+                body.style.backgroundColor = 'black';  // Change back to black when not flipped
+                contentLeft.style.visibility = 'hidden'; // Hide images before flip
+                contentRight.style.visibility = 'hidden'; // Hide images before flip
+            }
+        });
+    </script>
+</body>
+</html>
