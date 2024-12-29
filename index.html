@@ -37,9 +37,9 @@
             <h1 class="title-option-back"><a href="#" >MEMORIES OF YOU</a></h1>
             <h1 class="title-option-front"><a href="#">MEMORIES OF YOU</a></h1>
         </div>
-        <div class="title-option">
-            <h1 class="title-option-back"><a href="./Calendar.html">CALENDAR</a></h1>
-            <h1 class="title-option-front"><a href="./Calendar.html">CALENDAR</a></h1>
+        <div class="title-option" id="calendar-link">
+            <h1 class="title-option-back"><a href="#">CALENDAR</a></h1>
+            <h1 class="title-option-front"><a href="#">CALENDAR</a></h1>
         </div>
         <div class="title-option">
             <h1 class="title-option-disabled">SOCIAL LINK</h1>
@@ -54,6 +54,7 @@
 <script>
     const audio = document.getElementById('select-audio');
     const enterLink = document.getElementById('enter-link');
+    const calendarLink = document.getElementById('calendar-link');
     enterLink.addEventListener('click', function (event) {
         if (audio.readyState >= 3) {
             audio.play().then(() => {
@@ -66,6 +67,21 @@
             });
         } else {
             console.error('Audio is not ready to play');
+        }
+    });
+    calendarLink.addEventListener('click', function (event) {
+        if (audio.readyState >= 3) {
+            audio.play().then(() => {
+                audio.onended = function () {
+                    window.location.href = './Calendar.html'; // Redirect to the calendar page
+                };
+            }).catch(error => {
+                console.error('Audio playback failed:', error);
+                window.location.href = './Calendar.html'; // Fallback if audio fails
+            });
+        } else {
+            console.error('Audio is not ready to play');
+            window.location.href = './Calendar.html'; // Fallback if audio is not ready
         }
     });
 </script>
