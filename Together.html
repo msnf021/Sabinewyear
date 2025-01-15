@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mexico and London Time Clocks</title>
+    <title>Love through all</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://db.onlinewebfonts.com/c/d03fdeed9cc2e75a1f2ccb658f1e836a?family=NudMotoyaExCedar+W6"
         rel="stylesheet">
@@ -31,7 +31,7 @@
 
     <div class="clock" id="londonClock">Loading time...</div>
 
-    <div class="question-mark" id="enter-link"><a href="#" id="toggleCountdown">?</a></div>
+    <div class="question-mark" ><a href="TogetherAtLast.html" id="toggleCountdown">❤</a></div>
 
 
 
@@ -51,21 +51,7 @@
         const audio = document.getElementById('select-audio');
         const enterLink = document.getElementById('enter-link');
 
-        questionMarkLink.addEventListener('click', (event) => {
-            event.preventDefault();
 
-            // Show the overlay
-            const isHidden = overlay.classList.contains('hidden');
-            overlay.classList.toggle('hidden', !isHidden); // Toggle overlay visibility
-
-            // Display the countdown box when overlay is shown
-            countdown.style.display = isHidden ? 'block' : 'none';
-
-            // Play the audio
-            if (isHidden) {
-                audio.play().catch(err => console.error("Audio playback failed:", err));
-            }
-        });
         overlay.addEventListener('click', (event) => {
             if (event.target === overlay) {
                 overlay.classList.add('hidden'); // Hide the overlay

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eternity</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://db.onlinewebfonts.com/c/d03fdeed9cc2e75a1f2ccb658f1e836a?family=NudMotoyaExCedar+W6" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 0.5s ease;
+            font-family: 'NudMotoyaExCedar W6', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .lyrics-center {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 10px;
+            line-height: 1.5; /* Line height for better spacing */
+        }
+
+        /* Make currentTime a block-level element to ensure line breaks */
+        #currentTime {
+            display: block;
+            margin-bottom: 20px; /* Add margin between time and lyrics */
+        }
+
+        .clock {
+            font-size: 1.5rem;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="overlay" class="overlay hidden"></div>
+
+     <div>
+        <div class="lyrics-center">
+
+            <p>Love through all eternity</p>
+        </div>
+        <div class="time-center">
+            <p id="currentTime">Loading Time...</p>
+        </div>
+     </div>
+
+
+    <audio id="backgroundMusic" src="TogetherAtLast.mp3" loop autoplay></audio>
+
+    <script>
+        const overlay = document.getElementById('overlay');
+
+        function updateBackground() {
+            const currentHour = new Date().toLocaleTimeString('en-GB', {
+                timeZone: 'Europe/London',
+                hour: '2-digit',
+                hour12: false,
+            });
+
+            const hour = parseInt(currentHour, 10);
+
+            // Change background based on the UK time
+            if (hour >= 6 && hour < 18) {
+                document.body.style.backgroundImage = "url('MakotoAigisBlue.jpg')";
+            } else {
+                document.body.style.backgroundImage = "url('MakotoAigisOrange.jpg')";
+            }
+        }
+
+        function updateMexicoTime() {
+            const options = {
+                timeZone: 'America/Mexico_City',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            };
+
+            const formatter = new Intl.DateTimeFormat('en-US', options);
+            const mexicoTime = formatter.format(new Date());
+            document.getElementById('mexicoClock').textContent = `Mexico Time: ${mexicoTime}`;
+        }
+
+        function updateLondonTime() {
+            const options = {
+                timeZone: 'Europe/London',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            };
+
+            const formatter = new Intl.DateTimeFormat('en-US', options);
+            const londonTime = formatter.format(new Date());
+            document.getElementById('londonClock').textContent = `Our Time: ${londonTime}`;
+        }
+
+        // Function to update the time shown with lyrics (real time)
+        function updateLyricsTime() {
+            const currentTime = new Date().toLocaleTimeString('en-GB', {
+                timeZone: 'Europe/London',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            });
+            document.getElementById('currentTime').textContent = currentTime;
+        }
+
+        setInterval(updateMexicoTime, 1000);
+        setInterval(updateLondonTime, 1000);
+        setInterval(updateBackground, 1000);
+        setInterval(updateLyricsTime, 1000);  // Update the current time in lyrics every second
+
+        // Initial update
+        updateMexicoTime();
+        updateLondonTime();
+        updateBackground();
+        updateLyricsTime();  // Initial update for lyrics time
+    </script>
+</body>
+
+</html>
